@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  nginx:
+    build:
+      context: ./requirements/nginx
+    container_name: nginx
+    ports:
+      - "443:443"
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - wpnet
+    restart: always
+    depends_on:
+      - wordpress
+
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+    container_name: wordpress
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - wpnet
+    restart: "always"
+    depends_on:
+      - mariadb
+
+  mariadb:
+    build:
+      context: ./requirements/mariadb
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - wpnet
+    restart: always
+
+volumes:
+  wp_data:
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/ael-maaz/data/wordpress
+  db_data:
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/ael-maaz/data/mariadb
+  # certs:
+
+
+networks:
+  wpnet:
+    driver: bridge

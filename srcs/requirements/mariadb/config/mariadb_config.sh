@@ -10,16 +10,16 @@ echo "FLUSH PRIVILEGES;" > conf.sql
 
 # echo "USE mariadb;" >> conf.sql
 
-echo "CREATE DATABASE IF NOT EXISTS wordpress;" >> conf.sql
+echo "CREATE DATABASE IF NOT EXISTS ${DB_NAME};" >> conf.sql
 
-echo "CREATE USER IF NOT EXISTS 'testuser'@'%' IDENTIFIED BY 'password';" >> conf.sql
+echo "CREATE USER IF NOT EXISTS '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASSWORD}';" >> conf.sql
 
-echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'testuser'@'%' ;" >> conf.sql
+echo "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'%' ;" >> conf.sql
 
 echo "FLUSH PRIVILEGES;" >> conf.sql
 
 
-echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'root_password';" >> conf.sql
+echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';" >> conf.sql
 
 echo "FLUSH PRIVILEGES;" >> conf.sql
 

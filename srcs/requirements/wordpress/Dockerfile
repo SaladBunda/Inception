@@ -22,11 +22,6 @@ RUN apt update && apt install -y \
 	nano \
 	&& apt clean
 
-# Install WP-CLI (add this in your Dockerfile)
-# RUN curl -O https://github.com/wp-cli/wp-cli/releases/latest/download/wp-cli.phar \
-# 	&& chmod +x wp-cli.phar \
-# 	&& mv wp-cli.phar /usr/local/bin/wp
-
 
 WORKDIR /wordpress
 

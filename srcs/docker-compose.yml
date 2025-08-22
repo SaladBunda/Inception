@@ -4,6 +4,9 @@ services:
   nginx:
     build:
       context: ./requirements/nginx
+    image: nginx
+    env_file:
+      - .env
     container_name: nginx
     ports:
       - "443:443"
@@ -18,6 +21,9 @@ services:
   wordpress:
     build:
       context: ./requirements/wordpress
+    image: wordpress
+    env_file:
+      - .env
     container_name: wordpress
     volumes:
       - wp_data:/var/www/html
@@ -30,9 +36,10 @@ services:
   mariadb:
     build:
       context: ./requirements/mariadb
+    image: mariadb
+    env_file:
+      - .env 
     container_name: mariadb
-    environment:
-      MYSQL_ROOT_PASSWORD: root_password
     volumes:
       - db_data:/var/lib/mysql
     networks:
@@ -55,4 +62,5 @@ volumes:
 
 networks:
   wpnet:
+    name: wpnet
     driver: bridge

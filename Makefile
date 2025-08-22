@@ -17,9 +17,7 @@ clean:
 
 fclean: clean
 	docker system prune -af --volumes
-	sudo rm -rf /home/ael-maaz/data/wordpress /home/ael-maaz/data/mariadb
-	sudo mkdir -p /home/ael-maaz/data/wordpress
-	sudo mkdir -p /home/ael-maaz/data/mariadb
+	sudo rm -rf /home/ael-maaz/data/wordpress/* /home/ael-maaz/data/mariadb/*
 
 re: fclean all
 

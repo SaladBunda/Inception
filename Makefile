@@ -27,8 +27,3 @@ logs:
 ps:
 	docker ps
 
-wp-shell:
-	docker exec -it wordpress bash
-
-db-shell:
-	docker exec -it mariadb mysql -u root -p

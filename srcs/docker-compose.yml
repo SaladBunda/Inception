@@ -57,7 +57,6 @@ volumes:
       type: none
       o: bind
       device: /home/ael-maaz/data/mariadb
-  # certs:
 
 
 networks:
